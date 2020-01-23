@@ -1,0 +1,16 @@
+# vene
+venv
+
+# ide
+.idea
+
+# config
+
+config/*
+
+# test
+
+test/*
+
+# cache
+__pycache__
