@@ -8,7 +8,7 @@ if __name__ == "__main__":
         os.mkdir('config', 0o755)
 
     if not os.path.exists('config/DB.py'):
-        f = open('config/DB.py')
+        f = open('config/DB.py', 'w')
         f.close()
 
     with open('config/DB.py', 'w') as f:
@@ -22,7 +22,7 @@ if __name__ == "__main__":
         f.writelines(db_config)
 
     if not os.path.exists('config/Mail.py'):
-        f = open('config/Mail.py')
+        f = open('config/Mail.py', 'w')
         f.close()
 
     with open('config/Mail.py', 'w') as f:
