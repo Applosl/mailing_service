@@ -10,6 +10,7 @@ app = Flask(__name__)
 restful_build(app)
 
 if __name__ == '__main__':
+    print(sys.argv)
     if len(sys.argv) > 1 and sys.argv[1] == 'prod':
         print('prod Env')
         http_server = WSGIServer(('', 9990), app)
