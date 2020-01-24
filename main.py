@@ -13,7 +13,7 @@ if __name__ == '__main__':
     print(sys.argv)
     if len(sys.argv) > 1 and sys.argv[1] == 'prod':
         print('prod Env')
-        http_server = WSGIServer(('', 9990), app)
+        http_server = WSGIServer(('127.0.0.1', 9990), app)
         http_server.serve_forever()
     else:
         print('dev Env')
