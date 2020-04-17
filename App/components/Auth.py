@@ -1,5 +1,6 @@
 # coding=utf-8
 
+from typing import Optional
 from App.Models.Models import Account
 
 
@@ -9,7 +10,7 @@ class Auth(object):
     """
 
     @staticmethod
-    def check_account(app_id, secret):
+    def check_account(app_id, secret) -> Optional[Account]:
         """
         检测账户信息
         :param app_id: int
@@ -20,5 +21,5 @@ class Auth(object):
                                            Account.status == Account.STATUS_ON).first()
 
         if not isinstance(account_dao, Account):
-            return False
+            return None
         return account_dao

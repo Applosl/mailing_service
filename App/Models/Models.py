@@ -3,6 +3,8 @@ from sqlalchemy import Column, DateTime, String, text
 from sqlalchemy.dialects.mysql import BIGINT, INTEGER, TINYINT
 from App.middleware.db import db
 
+from datetime import datetime
+
 
 class Account(db.Model):
     __tablename__ = 'account'
@@ -27,3 +29,13 @@ class RequestLog(db.Model):
     send_mail = Column(String(255), nullable=False, comment='接收方账号')
     create_at = Column(DateTime, nullable=False, comment='创建时间')
     status = Column(TINYINT(3), nullable=False, server_default=text("'0'"), comment='状态码')
+
+    @staticmethod
+    def push(account_id: int, send_mail: str):
+        instance = RequestLog()
+        instance.account_id = account_id
+        instance.send_mail = send_mail
+        instance.create_at = datetime.now()
+        instance.status = RequestLog.STATUS_ON
+        db.session.add(instance)
+        db.session.commit()

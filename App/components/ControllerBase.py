@@ -16,9 +16,7 @@ def check_auth():
     params = parser.parse_args()
     appid = params['appid']
     secret = params['secret']
-    if Auth.check_account(app_id=appid, secret=secret):
-        return True
-    return False
+    return Auth.check_account(app_id=appid, secret=secret)
 
 
 def request_auth():
@@ -30,9 +28,10 @@ def request_auth():
     def check_auth_decorator(func):
         @wraps(func)
         def wrap_function(*args, **kwargs):
-            if not check_auth():
+            account = check_auth()
+            if not account:
                 return return_fail(code=10001, message='Permission forbidden')
-            return func(*args, **kwargs)
+            return func(account=account, *args, **kwargs)
 
         return wrap_function
 
