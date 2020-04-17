@@ -3,11 +3,12 @@
 
 import os
 from flask import Flask
-from App.restful_env import restful_build
-from gevent.pywsgi import WSGIServer
 from dotenv import load_dotenv
 
 load_dotenv()
+from App.restful_env import restful_build
+from gevent.pywsgi import WSGIServer
+
 app = Flask(__name__)
 restful_build(app)
 
